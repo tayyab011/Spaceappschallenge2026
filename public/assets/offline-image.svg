@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Image not available offline">
+  <rect width="640" height="360" fill="#11151f"/>
+  <rect x="8" y="8" width="624" height="344" fill="none" stroke="#4a4f57" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="320" y="176" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="22" text-anchor="middle">Image not available offline</text>
+  <text x="320" y="208" fill="#6b7078" font-family="system-ui, sans-serif" font-size="15" text-anchor="middle">This picture is hosted elsewhere and is not saved on this device yet.</text>
+</svg>

@@ -1,0 +1,56 @@
+# Dependencies
+
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Environment variables
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
+
+dist/
+build/
+.vite/
+
+# Logs
+
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+
+.vscode/
+.idea/
+
+# Cache
+
+.cache/
+.parcel-cache/
+
+# Temporary files
+
+*.tmp
+*.temp
+
+# Coverage
+
+coverage/
+
+# Local configuration
+
+*.local
+./scripts/resolve-missing-images.mjs
+

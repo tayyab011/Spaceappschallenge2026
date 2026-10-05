@@ -1,0 +1,51 @@
+{
+  "name": "space-journey",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "validate": "node scripts/validate-objects.mjs",
+    "prebuild": "npm run validate",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
+    "test:data": "node --test scripts/*.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource/fraunces": "^5.3.0",
+    "@fontsource/newsreader": "^5.3.0",
+    "@fontsource/noto-sans-bengali": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@fontsource/space-mono": "^5.3.0",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "canvas-confetti": "^1.9.4",
+    "firebase": "^12.19.0",
+    "framer-motion": "^13.4.4",
+    "jszip": "^3.10.2",
+    "lucide-react": "^0.546.0",
+    "maplibre-gl": "^6.11.2",
+    "motion": "^12.23.24",
+    "pmtiles": "^4.5.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "react-router-dom": "^7.18.4",
+    "three": "^0.186.1",
+    "vite": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/jszip": "^3.4.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "autoprefixer": "^10.4.21",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
+  }
+}
