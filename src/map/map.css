@@ -1,0 +1,80 @@
+.sb-marker {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+.sb-pin-dot {
+  position: absolute;
+  inset: 3px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: #2b2f42;
+  border: 2px solid rgba(236, 231, 220, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transition: transform 0.18s, background 0.18s;
+}
+.sb-marker:hover,
+.sb-marker[data-hover='true'] { z-index: 2; }
+.sb-marker:hover .sb-pin-dot,
+.sb-marker[data-hover='true'] .sb-pin-dot { transform: scale(1.18); background: #3b4059; }
+.sb-marker[aria-current='true'] { z-index: 3; }
+.sb-marker[aria-current='true'] .sb-pin-dot { background: #c1440e; border-color: #fff; transform: scale(1.25); }
+.sb-marker[aria-current='true']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid #c1440e;
+  pointer-events: none;
+  animation: sb-ping 1.6s ease-out infinite;
+}
+@keyframes sb-ping {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+.sb-pin-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  background: #fff;
+  color: #171a26;
+  font: 600 12px/1.2 system-ui, sans-serif;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.sb-marker:hover .sb-pin-label,
+.sb-marker[data-hover='true'] .sb-pin-label,
+.sb-marker[aria-current='true'] .sb-pin-label { opacity: 1; transform: translateX(-50%); }
+
+.sb-marker:focus-visible,
+.sb-map-focus:focus-visible,
+.sb-map .maplibregl-canvas:focus-visible,
+.sb-map .maplibregl-canvas-container:focus-visible {
+  outline: 3px solid #7fd6e8;
+  outline-offset: 3px;
+}
+.sb-map .maplibregl-ctrl-attrib { background: rgba(23, 26, 38, 0.75); color: #9aa0a6; }
+.sb-map .maplibregl-ctrl-attrib a { color: #9aa0a6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-pin-dot, .sb-pin-label { transition: none; }
+  .sb-marker[aria-current='true']::after { animation: none; }
+}
+.sb-i18n-fallback {
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
