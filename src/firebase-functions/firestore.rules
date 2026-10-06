@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function validSolutionCreate() {
+      return signedIn()
+        && request.resource.data.status == 'pending'
+        && request.resource.data.isAnonymous is bool
+        && request.resource.data.name is string
+        && request.resource.data.idea is string
+        && request.resource.data.impact is string
+        && request.resource.data.drawbacks is string
+        && request.resource.data.name.size() <= 40
+        && request.resource.data.idea.size() <= 280
+        && request.resource.data.impact.size() <= 200
+        && request.resource.data.drawbacks.size() <= 200;
+    }
+
+    function validCommentCreate() {
+      return signedIn()
+        && request.resource.data.status == 'pending'
+        && request.resource.data.isAnonymous == true
+        && request.resource.data.name == 'Anonymous Explorer'
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 240;
+    }
+
+    match /solutions/{solutionId} {
+      // Public visitors can only read content already approved by the server.
+      allow read: if resource.data.status == 'approved' || isAdmin();
+      allow create: if validSolutionCreate();
+      allow update, delete: if isAdmin();
+
+      match /comments/{commentId} {
+        allow read: if resource.data.status == 'approved' || isAdmin();
+        allow create: if validCommentCreate();
+        allow update, delete: if isAdmin();
+      }
+    }
+  }
+}
