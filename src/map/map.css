@@ -74,7 +74,3 @@
   .sb-pin-dot, .sb-pin-label { transition: none; }
   .sb-marker[aria-current='true']::after { animation: none; }
 }
-.sb-i18n-fallback {
-  text-decoration: underline dotted;
-  text-underline-offset: 3px;
-}

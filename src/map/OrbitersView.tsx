@@ -3,7 +3,6 @@ import * as THREE from 'three';
 import { X } from 'lucide-react';
 import { ORBITERS } from './orbiters';
 import type { Anchor, OrbiterItem } from './orbiters';
-import { T } from '../i18n';
 
 interface PlanetDef {
   key: Anchor;
@@ -517,7 +516,7 @@ export default function OrbitersView({ onOpenStory }: Props) {
                   onClick={() => onOpenStory?.(storyId)}
                   className="mt-5 rounded-full bg-[#c1440e] px-4 py-2 text-sm font-semibold text-white hover:bg-[#d3521a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7fd6e8]"
                 >
-                  <T k="map.story" />
+                  Read the full story
                 </button>
               )}
               {selected.sourceUrl && (

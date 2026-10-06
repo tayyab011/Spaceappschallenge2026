@@ -10,7 +10,6 @@ import type { BasemapInfo } from './basemap';
 import { filterByYear, sortByYear, yearBounds } from './timeline';
 import { ObjectPanel } from './ObjectPanel';
 import OrbitersView from './OrbitersView';
-import { T, useLang, useT } from '../i18n';
 
 const LANDER_SVG =
   '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10a4 4 0 0 1 8 0v3H8z"/><path d="M7 21l2-8M17 21l-2-8M10 17h4"/></svg>';
@@ -52,8 +51,6 @@ interface Props {
 }
 
 export default function MapView({ onOpenStory }: Props) {
-  const t = useT();
-  const [lang] = useLang();
   const reducedMotion = usePrefersReducedMotion();
   const [view, setView] = useState<'landers' | 'orbiters'>('landers');
   const [body, setBody] = useState<ObjectBody>('moon');
@@ -206,13 +203,13 @@ export default function MapView({ onOpenStory }: Props) {
   const mapBtn = `grid h-10 w-10 place-items-center rounded-full bg-white text-[#171a26] shadow-lg hover:bg-[#ece7dc] ${btn}`;
 
   return (
-    <section lang={lang} aria-labelledby="map-title" className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <section aria-labelledby="map-title" className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <header className="mb-5 flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-2xl">
           <h2 id="map-title" className="font-serif text-3xl text-[#ece7dc] sm:text-4xl">
-            <T k="map.title" />
+            Where they rest
           </h2>
-          <p className="mt-2 text-[#9aa0a6]"><T k="map.intro" /></p>
+          <p className="mt-2 text-[#9aa0a6]">Objects that were left behind on the Moon and Mars.</p>
         </div>
         <div role="group" aria-label="Map section" className="flex rounded-full bg-[#1a1d2b] p-1">
           {([['landers', 'Impacted'], ['orbiters', 'Still Orbiting']] as const).map(([v, label]) => (
@@ -234,13 +231,13 @@ export default function MapView({ onOpenStory }: Props) {
           <div className="px-1 pt-1 lg:col-start-1 lg:row-start-1">
             <p role="status" className="text-xs text-[#8d93a6]">
               {visible.length} / {all.length}
-              {PENDING_OBJECT_COUNT > 0 ? ` · ${PENDING_OBJECT_COUNT} ${t('map.pending')}` : ''}
+              {PENDING_OBJECT_COUNT > 0 ? ` · ${PENDING_OBJECT_COUNT} records waiting for verification` : ''}
             </p>
             <h3 className="mt-1 font-serif text-2xl text-[#ece7dc] sm:text-3xl">
-              Left behind on <T k={body === 'moon' ? 'map.moon' : 'map.mars'} />
+              Left behind on {body === 'moon' ? 'Moon' : 'Mars'}
             </h3>
 
-            <div role="group" aria-label={t('map.body')} className="mt-4 grid grid-cols-2 gap-3">
+            <div role="group" aria-label="Body" className="mt-4 grid grid-cols-2 gap-3">
               {(['moon', 'mars'] as const).map((b) => (
                 <button
                   key={b}
@@ -262,7 +259,7 @@ export default function MapView({ onOpenStory }: Props) {
                     }}
                   />
                   <span>
-                    <span className="block text-sm font-semibold text-[#ece7dc]"><T k={b === 'moon' ? 'map.moon' : 'map.mars'} /></span>
+                    <span className="block text-sm font-semibold text-[#ece7dc]">{b === 'moon' ? 'Moon' : 'Mars'}</span>
                     <span className="block text-xs text-[#8d93a6]">{counts[b]} sites</span>
                   </span>
                 </button>
@@ -273,7 +270,7 @@ export default function MapView({ onOpenStory }: Props) {
               <div className="mt-3 rounded-2xl bg-[#202436] px-3 py-2.5">
                 <div className="flex items-center justify-between gap-2">
                   <label htmlFor="map-year" className="text-sm text-[#ece7dc]">
-                    <T k="map.timeline" />: <T k="map.upTo" /> <output htmlFor="map-year" className="font-semibold">{sliderValue}</output>
+                    Left behind by year: Up to <output htmlFor="map-year" className="font-semibold">{sliderValue}</output>
                   </label>
                   {year !== null && (
                     <button
@@ -281,7 +278,7 @@ export default function MapView({ onOpenStory }: Props) {
                       onClick={() => setYear(null)}
                       className={`rounded-full border border-white/20 px-3 py-1 text-xs text-[#ece7dc] hover:border-white/40 ${btn}`}
                     >
-                      <T k="map.showAll" />
+                      Show all years
                     </button>
                   )}
                 </div>
@@ -301,9 +298,9 @@ export default function MapView({ onOpenStory }: Props) {
 
           <div className="relative order-2 h-[55vh] min-h-[340px] overflow-hidden rounded-2xl border border-white/10 lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-auto lg:min-h-0">
             {webgl ? (
-              <div ref={containerRef} role="region" aria-label={t('map.mapLabel')} className="sb-map h-full w-full" />
+              <div ref={containerRef} role="region" aria-label="Map of objects left behind" className="sb-map h-full w-full" />
             ) : (
-              <p role="status" className="p-4 text-sm text-[#9aa0a6]"><T k="map.noWebgl" /></p>
+              <p role="status" className="p-4 text-sm text-[#9aa0a6]">The map needs WebGL, which is not available here. Use the list instead.</p>
             )}
             {webgl && (
               <>
@@ -321,7 +318,7 @@ export default function MapView({ onOpenStory }: Props) {
               </>
             )}
             {webgl && basemap === 'none' && (
-              <p className="absolute bottom-3 left-3 right-3 z-10 rounded-lg bg-[#171a26]/90 px-3 py-2 text-xs text-[#9aa0a6]"><T k="map.noBasemap" /></p>
+              <p className="absolute bottom-3 left-3 right-3 z-10 rounded-lg bg-[#171a26]/90 px-3 py-2 text-xs text-[#9aa0a6]">No local basemap installed: showing a lat/lon grid only.</p>
             )}
           </div>
 
@@ -342,10 +339,10 @@ export default function MapView({ onOpenStory }: Props) {
             <div className={selected ? 'hidden' : ''}>
               {visible.length === 0 ? (
                 <p className="rounded-2xl bg-[#202436] p-4 text-sm text-[#9aa0a6]">
-                  <T k={all.length === 0 ? 'map.none' : 'map.noneForYear'} />
+                  {all.length === 0 ? 'No verified objects yet. Records appear here only after they are checked against a NASA source.' : 'No verified objects for this selection.'}
                 </p>
               ) : (
-                <ul aria-label={t('map.list')} className="space-y-3">
+                <ul aria-label="List of objects" className="space-y-3">
                   {visible.map((o) => (
                     <li key={o.id}>
                       <button
