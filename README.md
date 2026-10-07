@@ -73,17 +73,6 @@ StarBound transforms spacecraft and rover missions into an interactive experienc
 * Explore their final known locations and mission status
 * Share ideas about what could be done with abandoned explorers
 
-## 🛰️ Explorers
-
-StarBound features explorers from different parts of the Solar System, including:
-
-* 🌙 Lunar explorers
-* 🔴 Mars rovers
-* 🪐 Deep-space spacecraft
-* 🚀 Historic planetary missions
-
-Each explorer has its own story, mission history, scientific discoveries, and ending.
-
 ## 💡 Community Ideas
 
 StarBound also gives users a place to share ideas about abandoned spacecraft and rovers.
@@ -96,20 +85,6 @@ Users can submit:
 * Their name or an anonymous submission
 
 Community ideas are displayed separately so visitors can explore different possibilities for the future of these explorers.
-
-## 🎨 Design
-
-StarBound uses an immersive space-themed interface designed to make spacecraft history accessible and engaging, especially for younger audiences.
-
-The experience combines:
-
-* Interactive cards
-* Mission timelines
-* Illustrations
-* Space imagery
-* Story-driven content
-* Interactive rover conversations
-* Community submissions
 
 ## 🌠 Why StarBound?
 
