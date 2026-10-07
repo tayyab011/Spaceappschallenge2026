@@ -12,12 +12,11 @@ This file states plainly what AI tools did in this project.
 
 ## What AI did
 
-Work done with *Claude* in the Phase 1-4 session:
+Work done with *Claude* in the Phase 1-3 session:
 
 - Phase 1: `LICENSE` (Apache-2.0 text)
 - Phase 2: `data/objects.geojson` skeleton, `src/types/objects.ts`, `scripts/validate-objects.mjs`. **AI did not supply coordinates, dates or mission facts.**
-- Phase 3: i18n scaffolding (`src/i18n/`).
-- Phase 4: service worker, offline mode, accessibility fixes, relabelling procedural terrain, asset-localizing script.
+- Phase 3: service worker, offline mode, accessibility fixes, relabelling procedural terrain, asset-localizing script.
 
 Exact files per phase are listed in the hand-off notes for each phase.
 
